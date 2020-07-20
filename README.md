@@ -1,5 +1,6 @@
 # Async-Inn
-Authors: Bryant Davis, Nicholas Ryan, Bade Habid
+Author: Bryant Davis
+Collaborators: Nicholas Ryan, Bade Habib
 
 # Domain Problem
 
@@ -8,3 +9,6 @@ https://docs.google.com/document/d/1nppbXbjYCOY2yeuyXozYDU2KQVrGXcFB8_k19UAyZWs/
 # Visual
 
 ![Diagram](/Diagram.jpg)
+
+Versions:
+1.0 "Created Diagram and README" - July 20 2020
