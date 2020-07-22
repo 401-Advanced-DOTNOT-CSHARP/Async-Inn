@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bryan\\source\\repos\\Lab12-2\\Lab12-2\\Lab12-2.csproj": {}
+    "C:\\Users\\Bryan\\source\\repos\\Async-Inn\\Lab12-2\\Lab12-2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bryan\\source\\repos\\Lab12-2\\Lab12-2\\Lab12-2.csproj": {
+    "C:\\Users\\Bryan\\source\\repos\\Async-Inn\\Lab12-2\\Lab12-2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bryan\\source\\repos\\Lab12-2\\Lab12-2\\Lab12-2.csproj",
+        "projectUniqueName": "C:\\Users\\Bryan\\source\\repos\\Async-Inn\\Lab12-2\\Lab12-2.csproj",
         "projectName": "Lab12-2",
-        "projectPath": "C:\\Users\\Bryan\\source\\repos\\Lab12-2\\Lab12-2\\Lab12-2.csproj",
+        "projectPath": "C:\\Users\\Bryan\\source\\repos\\Async-Inn\\Lab12-2\\Lab12-2.csproj",
         "packagesPath": "C:\\Users\\Bryan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bryan\\source\\repos\\Lab12-2\\Lab12-2\\obj\\",
+        "outputPath": "C:\\Users\\Bryan\\source\\repos\\Async-Inn\\Lab12-2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bryan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,11 +46,19 @@
               "target": "Package",
               "version": "[3.1.6, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.6, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.3, )"
             }
           },
           "imports": [

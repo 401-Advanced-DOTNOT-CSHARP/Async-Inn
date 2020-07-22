@@ -45,10 +45,10 @@ namespace Lab12_2
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id}");
-                });
+              //  endpoints.MapGet("/", async context =>
+               // {
+                    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+              //  });
             });
         }
     }

@@ -18,15 +18,44 @@ namespace Lab12_2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Lab12_2.Models.Hotel", b =>
+            modelBuilder.Entity("Lab12_2.Models.Amenity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Amenities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Air Conditioner"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Heater"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Fridge"
+                        });
+                });
+
+            modelBuilder.Entity("Lab12_2.Models.Hotel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -40,9 +69,79 @@ namespace Lab12_2.Migrations
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("StretAddress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Seattle",
+                            Name = "Bryant Comfort Inn",
+                            PhoneNumber = "555-555-5555",
+                            State = "Washington",
+                            StretAddress = "123 Fake Street"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Burien",
+                            Name = "Bryant Resort",
+                            PhoneNumber = "555-555-9999",
+                            State = "Washington",
+                            StretAddress = "312 Awesome Avenue"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "San Diego",
+                            Name = "Bryant Sunny Lake View Hotel",
+                            PhoneNumber = "888-777-6666",
+                            State = "California",
+                            StretAddress = "876 Burned Avenue"
+                        });
+                });
+
+            modelBuilder.Entity("Lab12_2.Models.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Layout")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Layout = 2,
+                            Name = "Vampire Suite"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Layout = 3,
+                            Name = "Burned Villa"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Layout = 1,
+                            Name = "Boring Cottage"
+                        });
                 });
 #pragma warning restore 612, 618
         }
