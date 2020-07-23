@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lab12_2.Data;
 using Lab12_2.Models;
+using Lab12_2.Models.Interfaces;
 
 namespace Lab12_2.Controllers
 {
@@ -14,32 +15,25 @@ namespace Lab12_2.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
-        private readonly ASynceInnDbContext _context;
+        private readonly IRoom _room;
 
-        public RoomsController(ASynceInnDbContext context)
+        public RoomsController(IRoom room)
         {
-            _context = context;
+            _room = room;
         }
 
         // GET: api/Rooms
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
-            return await _context.Rooms.ToListAsync();
+            return await _room.GetRooms();
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
-
-            if (room == null)
-            {
-                return NotFound();
-            }
-
-            return room;
+            return await _room.GetRoom(id);
         }
 
         // PUT: api/Rooms/5
@@ -53,26 +47,11 @@ namespace Lab12_2.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(room).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var updatedRoom = await _room.Update(room);
+            return Ok(updatedRoom);
         }
+
+
 
         // POST: api/Rooms
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -80,8 +59,7 @@ namespace Lab12_2.Controllers
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-            _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
+            await _room.Create(room);
 
             return CreatedAtAction("GetRoom", new { id = room.Id }, room);
         }
@@ -90,21 +68,11 @@ namespace Lab12_2.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Room>> DeleteRoom(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
-            if (room == null)
-            {
-                return NotFound();
-            }
+            await _room.Delete(id);
+            return NoContent();
 
-            _context.Rooms.Remove(room);
-            await _context.SaveChangesAsync();
-
-            return room;
         }
 
-        private bool RoomExists(int id)
-        {
-            return _context.Rooms.Any(e => e.Id == id);
-        }
+
     }
 }

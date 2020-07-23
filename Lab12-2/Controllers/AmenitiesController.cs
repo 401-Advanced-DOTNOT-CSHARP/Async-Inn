@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lab12_2.Data;
 using Lab12_2.Models;
+using Lab12_2.Models.Interfaces;
+
 
 namespace Lab12_2.Controllers
 {
@@ -14,32 +16,25 @@ namespace Lab12_2.Controllers
     [ApiController]
     public class AmenitiesController : ControllerBase
     {
-        private readonly ASynceInnDbContext _context;
+        private readonly IAmenity _amenity;
 
-        public AmenitiesController(ASynceInnDbContext context)
+        public AmenitiesController(IAmenity amenity)
         {
-            _context = context;
+            _amenity = amenity;
         }
 
         // GET: api/Amenities
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Amenity>>> GetAmenities()
         {
-            return await _context.Amenities.ToListAsync();
+            return await _amenity.GetAmenities();
         }
 
         // GET: api/Amenities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Amenity>> GetAmenity(int id)
         {
-            var amenity = await _context.Amenities.FindAsync(id);
-
-            if (amenity == null)
-            {
-                return NotFound();
-            }
-
-            return amenity;
+            return await _amenity.GetAmenity(id);
         }
 
         // PUT: api/Amenities/5
@@ -53,26 +48,11 @@ namespace Lab12_2.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(amenity).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AmenityExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var updatedAmenity = await _amenity.Update(amenity);
+            return Ok(updatedAmenity);
         }
+
+
 
         // POST: api/Amenities
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -80,31 +60,20 @@ namespace Lab12_2.Controllers
         [HttpPost]
         public async Task<ActionResult<Amenity>> PostAmenity(Amenity amenity)
         {
-            _context.Amenities.Add(amenity);
-            await _context.SaveChangesAsync();
+            await _amenity.Create(amenity);
 
             return CreatedAtAction("GetAmenity", new { id = amenity.Id }, amenity);
         }
 
-        // DELETE: api/Amenities/5
+        // DELETE: api/Amenity/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Amenity>> DeleteAmenity(int id)
         {
-            var amenity = await _context.Amenities.FindAsync(id);
-            if (amenity == null)
-            {
-                return NotFound();
-            }
+            await _amenity.Delete(id);
+            return NoContent();
 
-            _context.Amenities.Remove(amenity);
-            await _context.SaveChangesAsync();
-
-            return amenity;
         }
 
-        private bool AmenityExists(int id)
-        {
-            return _context.Amenities.Any(e => e.Id == id);
-        }
+
     }
 }
