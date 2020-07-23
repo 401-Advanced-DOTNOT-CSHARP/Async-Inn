@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Models\NewFolder\" />
     <Folder Include="NewFolder1\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>
