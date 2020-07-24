@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Lab12-2"
+    "\\Lab12-2",
+    "\\Lab12-2\\Models",
+    "\\Lab12-2\\Models\\Interfaces",
+    "\\Lab12-2\\Models\\Interfaces\\Services"
   ],
-  "SelectedNode": "\\Lab12-2\\Startup.cs",
+  "SelectedNode": "\\Lab12-2\\Models\\Interfaces\\Services",
   "PreviewInSolutionExplorer": false
 }

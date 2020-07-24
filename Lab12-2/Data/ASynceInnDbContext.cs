@@ -17,6 +17,8 @@ namespace Lab12_2.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<RoomAmenities>().HasKey(x => new { x.AmenitiesID, x.RoomID });
+
             modelBuilder.Entity<Hotel>().HasData(
                 new Hotel
                 {
@@ -92,6 +94,7 @@ namespace Lab12_2.Data
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
+        public DbSet<RoomAmenities> RoomAmenity { get; set; }
 
 
     }

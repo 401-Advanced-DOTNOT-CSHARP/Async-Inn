@@ -12,5 +12,7 @@ namespace Lab12_2.Models.Interfaces
         Task<Room> GetRoom(int id);
         Task<Room> Update(Room room);
         Task Delete(int id);
+        Task AddAmenity(int roomid, int amenityid);
+        Task RemoveAmenityFromRoom(int roomId, int amenityId);
     }
 }

@@ -41,6 +41,9 @@ namespace Lab12_2.Models.Interfaces.Services
         {
             Room room = await _context.Rooms.FindAsync(id);
 
+            var roomAmenities = await _context.RoomAmenity.Where(x => x.RoomID == id).ToListAsync();
+            room.RoomAmenities = roomAmenities;
+
             return room;
         }
 
@@ -49,6 +52,29 @@ namespace Lab12_2.Models.Interfaces.Services
             _context.Entry(room).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return room;
+        }
+        /// <summary>
+        /// Adds an Amenity to a room
+        /// </summary>
+        /// <param name="roomid">The room that the amenity that is being added to</param>
+        /// <param name="amenityid">The amenity to be added</param>
+        /// <returns>nothing</returns>
+        public async Task AddAmenity(int roomid, int amenityid)
+        {
+            RoomAmenities roomAmenity = new RoomAmenities()
+            {
+                RoomID = roomid,
+                AmenitiesID = amenityid
+            };
+            _context.Entry(roomAmenity).State = EntityState.Added;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveAmenityFromRoom(int roomId, int amenityId)
+        {
+            var result = await _context.RoomAmenity.FirstOrDefaultAsync(x => x.RoomID == roomId && x.AmenitiesID == amenityId);
+            _context.Entry(result).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
         }
     }
 }
