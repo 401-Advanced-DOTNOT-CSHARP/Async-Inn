@@ -50,5 +50,7 @@ namespace Lab12_2.Models.Interfaces.Services
             await _context.SaveChangesAsync();
             return amenity;
         }
+
+
     }
 }

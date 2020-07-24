@@ -64,6 +64,24 @@ namespace Lab12_2.Controllers
             return CreatedAtAction("GetRoom", new { id = room.Id }, room);
         }
 
+        [HttpPost]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        // POST: api/Rooms/{RoomId}/Amenity/{AmenityId}}
+        public async Task<IActionResult> AddAmenityToRoom(int roomId, int amenityId)
+        {
+            await _room.AddAmenity(roomId, amenityId);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        // DELETE: api/Rooms/{RoomId}/Amenity/{AmenityId}}
+        public async Task<IActionResult> RemoveAmenityFromRoom(int roomId, int amenityId)
+        {
+            await _room.RemoveAmenityFromRoom(roomId, amenityId);
+            return Ok();
+        }
+
         // DELETE: api/Rooms/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Room>> DeleteRoom(int id)
@@ -72,6 +90,8 @@ namespace Lab12_2.Controllers
             return NoContent();
 
         }
+
+
 
 
     }
