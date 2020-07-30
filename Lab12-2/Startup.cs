@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Lab12_2.Models.Interfaces;
 using System.Collections;
+using Lab12_2.Models;
 
 namespace Lab12_2
 {
@@ -37,6 +38,8 @@ namespace Lab12_2
             services.AddTransient<IHotel, HotelRepository>();
             services.AddTransient<IRoom, RoomRepository>();
             services.AddTransient<IAmenity, AmenityRepository>();
+            services.AddTransient<IHotelRoom, HotelRoomRepository>();
+
 
 
         }
