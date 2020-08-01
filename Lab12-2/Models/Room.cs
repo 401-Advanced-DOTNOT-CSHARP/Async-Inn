@@ -11,5 +11,6 @@ namespace Lab12_2.Models
         public string Name { get; set; }
         public int Layout { get; set; }
         public List<RoomAmenities> RoomAmenities { get; set; }
+        public HotelRoom HotelRoom { get; set; }
     }
 }

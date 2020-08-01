@@ -126,7 +126,11 @@ namespace Lab12_2.Migrations
 
                     b.HasKey("HotelID", "RoomNumber");
 
-                    b.HasIndex("RoomId");
+                    b.HasIndex("HotelID")
+                        .IsUnique();
+
+                    b.HasIndex("RoomId")
+                        .IsUnique();
 
                     b.ToTable("HotelRooms");
                 });
@@ -192,14 +196,14 @@ namespace Lab12_2.Migrations
             modelBuilder.Entity("Lab12_2.Models.HotelRoom", b =>
                 {
                     b.HasOne("Lab12_2.Models.Hotel", "Hotel")
-                        .WithMany()
-                        .HasForeignKey("HotelID")
+                        .WithOne("HotelRoom")
+                        .HasForeignKey("Lab12_2.Models.HotelRoom", "HotelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Lab12_2.Models.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomId")
+                        .WithOne("HotelRoom")
+                        .HasForeignKey("Lab12_2.Models.HotelRoom", "RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -207,7 +211,7 @@ namespace Lab12_2.Migrations
             modelBuilder.Entity("Lab12_2.Models.RoomAmenities", b =>
                 {
                     b.HasOne("Lab12_2.Models.Amenity", "Amenity")
-                        .WithMany()
+                        .WithMany("RoomAmenities")
                         .HasForeignKey("AmenityId");
 
                     b.HasOne("Lab12_2.Models.Room", "Room")
