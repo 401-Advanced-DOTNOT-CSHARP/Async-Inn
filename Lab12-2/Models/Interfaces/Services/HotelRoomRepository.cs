@@ -15,7 +15,13 @@ namespace Lab12_2.Models.Interfaces.Services
             {
                 _context = context;
             }
-            public async Task<HotelRoom> Create(HotelRoom hotelRoom, int hotelId)
+        /// <summary>
+        /// Creates a HotelRoom that is a Room associated with a specific Hotel
+        /// </summary>
+        /// <param name="hotelRoom">The object to be created</param>
+        /// <param name="hotelId">The Hotel that the Room is to be added to</param>
+        /// <returns>No Return</returns>
+        public async Task<HotelRoom> Create(HotelRoom hotelRoom, int hotelId)
             {
             hotelRoom.HotelID = hotelId;
                 _context.Entry(hotelRoom).State = EntityState.Added;
@@ -23,16 +29,25 @@ namespace Lab12_2.Models.Interfaces.Services
 
                 return hotelRoom;
             }
-
-            public async Task<HotelRoom> Delete(int hotelId, int roomNumber)
+        /// <summary>
+        /// Deletes the Room attached to the Hotel
+        /// </summary>
+        /// <param name="hotelId">The Hotel that the room is attached to</param>
+        /// <param name="roomNumber">The RoomNumber of the room to be deleted</param>
+        /// <returns>No Return</returns>
+        public async Task<HotelRoom> Delete(int hotelId, int roomNumber)
             {
                 HotelRoom hotelRoom = await GetHotelRoom(hotelId, roomNumber);
                 _context.Entry(hotelRoom).State = EntityState.Deleted;
                 await _context.SaveChangesAsync();
             return hotelRoom;
             }
-
-            public async Task<List<HotelRoom>> GetHotelRooms(int hotelid)
+        /// <summary>
+        /// Gets all the Rooms associated with a Hotel
+        /// </summary>
+        /// <param name="hotelId">The Hotel in which you want to query</param>
+        /// <returns>No Return</returns>
+        public async Task<List<HotelRoom>> GetHotelRooms(int hotelid)
             {
                 List<HotelRoom> hotelRoom = await _context.HotelRooms.Where(x => x.HotelID == hotelid)
                 .Include(x => x.Room)
@@ -42,8 +57,13 @@ namespace Lab12_2.Models.Interfaces.Services
 
                 return hotelRoom;
             }
-
-            public async Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber)
+        /// <summary>
+        /// A Specific Room associated with a Specific hotel that you want to query
+        /// </summary>
+        /// <param name="hotelId">The Hotel you are querying</param>
+        /// <param name="roomNumber">The Room you are querying</param>
+        /// <returns>No Return</returns>
+        public async Task<HotelRoom> GetHotelRoom(int hotelId, int roomNumber)
             {
             var result = await _context.HotelRooms
             .Where(x => x.HotelID == hotelId && x.RoomNumber == roomNumber)
@@ -55,8 +75,12 @@ namespace Lab12_2.Models.Interfaces.Services
 
                 return result;
             }
-
-            public async Task<HotelRoom> Update(HotelRoom hotelRoom)
+        /// <summary>
+        /// Updates the HotelRoom in the database
+        /// </summary>
+        /// <param name="hotelRoom">The modified HotelRoom that is to replace the current HotelRoom</param>
+        /// <returns>No Return</returns>
+        public async Task<HotelRoom> Update(HotelRoom hotelRoom)
             {
                 
                 _context.Entry(hotelRoom).State = EntityState.Modified;

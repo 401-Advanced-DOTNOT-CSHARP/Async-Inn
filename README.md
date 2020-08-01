@@ -48,6 +48,7 @@ DELETE a specific room from a hotel: /api/Hotels/{hotelId}/Rooms/{roomNumber}
 ![Diagram](/Diagram.jpg)
 
 Versions:
+1.9: *Added summary Comments to Interfaces and Services* - August 1 2020
 1.8: *Added and tested HotelRoom class, interface, service and controller.* - July 30 2020
 1.7: *Added a RoomAmenities class, added a Add Amenity and Remove Amenity methods on the Room Repo and added a POST and DELETE Method on the controller* - July 23, 2020
 1.6: *Added Interfaces for Amenity, Hotel and Room, added 3 services for each, updated all 3 

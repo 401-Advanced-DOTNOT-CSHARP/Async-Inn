@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Lab12_2.Models.Interfaces;
 using System.Collections;
 using Lab12_2.Models;
+using Newtonsoft.Json;
 
 namespace Lab12_2
 {
@@ -29,7 +30,9 @@ namespace Lab12_2
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddMvc();
+            services.AddControllers()
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<ASynceInnDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
