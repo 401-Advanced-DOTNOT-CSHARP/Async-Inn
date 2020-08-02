@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Lab12_2.Data;
 using Lab12_2.Models;
 using Lab12_2.Models.Interfaces;
+using Lab12_2.Models.DTOs;
 
 namespace Lab12_2.Controllers
 {
@@ -24,14 +25,14 @@ namespace Lab12_2.Controllers
 
         // GET: api/Rooms
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRooms()
         {
             return await _room.GetRooms();
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
             return await _room.GetRoom(id);
         }
@@ -40,9 +41,9 @@ namespace Lab12_2.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, Room room)
+        public async Task<IActionResult> PutRoom(int id, RoomDTO room)
         {
-            if (id != room.Id)
+            if (id != room.ID)
             {
                 return BadRequest();
             }
@@ -57,11 +58,11 @@ namespace Lab12_2.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<RoomDTO>> PostRoom(RoomDTO room)
         {
             await _room.Create(room);
 
-            return CreatedAtAction("GetRoom", new { id = room.Id }, room);
+            return CreatedAtAction("GetRoom", new { id = room.ID }, room);
         }
 
         [HttpPost]
@@ -84,7 +85,7 @@ namespace Lab12_2.Controllers
 
         // DELETE: api/Rooms/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Room>> DeleteRoom(int id)
+        public async Task<ActionResult<RoomDTO>> DeleteRoom(int id)
         {
             await _room.Delete(id);
             return NoContent();

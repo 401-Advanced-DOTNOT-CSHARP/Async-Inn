@@ -2,7 +2,7 @@
 
 namespace Lab12_2.Migrations
 {
-    public partial class updatedNavigationTake3 : Migration
+    public partial class mrKimIsAGenius : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -131,12 +131,6 @@ namespace Lab12_2.Migrations
                     { 2, 3, "Burned Villa" },
                     { 3, 1, "Boring Cottage" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HotelRooms_HotelID",
-                table: "HotelRooms",
-                column: "HotelID",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_HotelRooms_RoomId",
