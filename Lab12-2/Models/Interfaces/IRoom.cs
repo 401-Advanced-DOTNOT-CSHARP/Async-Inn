@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab12_2.Models.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,24 +13,24 @@ namespace Lab12_2.Models.Interfaces
         /// </summary>
         /// <param name="room">The Room to be added</param>
         /// <returns>The Room that was added</returns>
-        Task<Room> Create(Room room);
+        Task<RoomDTO> Create(RoomDTO room);
         /// <summary>
         /// Queries the database for all Rooms
         /// </summary>
         /// <returns>List of all the Rooms in the database</returns>
-        Task<List<Room>> GetRooms();
+        Task<List<RoomDTO>> GetRooms();
         /// <summary>
         /// Queries the database to find the Room matching the ID input
         /// </summary>
         /// <param name="id">The ID of the room</param>
         /// <returns>The Room from the database</returns>
-        Task<Room> GetRoom(int id);
+        Task<RoomDTO> GetRoom(int id);
         /// <summary>
         /// Updates the Room in the database
         /// </summary>
         /// <param name="room">The object of the Room to be updated</param>
         /// <returns>The updated Room</returns>
-        Task<Room> Update(Room room);
+        Task<RoomDTO> Update(RoomDTO room);
         /// <summary>
         /// Deletes the Room matching the ID input from the database
         /// </summary>

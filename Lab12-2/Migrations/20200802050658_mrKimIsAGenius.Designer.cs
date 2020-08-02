@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab12_2.Migrations
 {
     [DbContext(typeof(ASynceInnDbContext))]
-    [Migration("20200730225907_updatedNavigationTake3")]
-    partial class updatedNavigationTake3
+    [Migration("20200802050658_mrKimIsAGenius")]
+    partial class mrKimIsAGenius
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -128,9 +128,6 @@ namespace Lab12_2.Migrations
 
                     b.HasKey("HotelID", "RoomNumber");
 
-                    b.HasIndex("HotelID")
-                        .IsUnique();
-
                     b.HasIndex("RoomId")
                         .IsUnique();
 
@@ -198,8 +195,8 @@ namespace Lab12_2.Migrations
             modelBuilder.Entity("Lab12_2.Models.HotelRoom", b =>
                 {
                     b.HasOne("Lab12_2.Models.Hotel", "Hotel")
-                        .WithOne("HotelRoom")
-                        .HasForeignKey("Lab12_2.Models.HotelRoom", "HotelID")
+                        .WithMany("HotelRoom")
+                        .HasForeignKey("HotelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

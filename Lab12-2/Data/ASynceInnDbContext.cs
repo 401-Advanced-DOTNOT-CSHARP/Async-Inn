@@ -24,6 +24,7 @@ namespace Lab12_2.Data
             modelBuilder.Entity<HotelRoom>().HasData(
                 new HotelRoom
                 {
+                    
                     HotelID = 1,
                     RoomNumber = 105,
                     RoomId = 1,

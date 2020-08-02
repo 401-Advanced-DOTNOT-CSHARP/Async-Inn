@@ -1,4 +1,5 @@
 ﻿using Lab12_2.Data;
+using Lab12_2.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,30 @@ namespace Lab12_2.Models.Interfaces.Services
     public class RoomRepository : IRoom
     {
         private ASynceInnDbContext _context;
+        private IAmenity _Amenity;
 
-        public RoomRepository(ASynceInnDbContext context)
+        public RoomRepository(ASynceInnDbContext context, IAmenity amenity)
         {
             _context = context;
+            _Amenity = amenity;
         }
         /// <summary>
         /// Creates a Room to be added to the database
         /// </summary>
         /// <param name="room">The Room to be added</param>
         /// <returns>The Room that was added</returns>
-        public async Task<Room> Create(Room room)
+        public async Task<RoomDTO> Create(RoomDTO roomDTO)
         {
+            Room room = new Room()
+            {
+                Id = roomDTO.ID,
+                Layout = roomDTO.Layout,
+                Name = roomDTO.Name
+            };
             _context.Entry(room).State = Microsoft.EntityFrameworkCore.EntityState.Added;
             await _context.SaveChangesAsync();
 
-            return room;
+            return roomDTO;
         }
         /// <summary>
         /// Deletes the Room matching the ID input from the database
@@ -34,7 +43,7 @@ namespace Lab12_2.Models.Interfaces.Services
         /// <returns>The Deleted Room</returns>
         public async Task Delete(int id)
         {
-            Room room = await GetRoom(id);
+            Room room = await _context.Rooms.FirstOrDefaultAsync(x => x.Id == id);
             _context.Entry(room).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
@@ -42,7 +51,7 @@ namespace Lab12_2.Models.Interfaces.Services
         /// Queries the database for all Rooms
         /// </summary>
         /// <returns>List of all the Rooms in the database</returns>
-        public async Task<List<Room>> GetRooms()
+        public async Task<List<RoomDTO>> GetRooms()
         {
             var rooms = await _context.Rooms
                 .Include(x => x.RoomAmenities)
@@ -51,14 +60,21 @@ namespace Lab12_2.Models.Interfaces.Services
                 .ThenInclude(x => x.Hotel)
                 .ToListAsync();
 
-            return rooms;
+            List<RoomDTO> roomDTO = new List<RoomDTO>();
+
+            foreach(var room in rooms)
+            {
+                roomDTO.Add(await GetRoom(room.Id));
+            }
+
+            return roomDTO;
         }
         /// <summary>
         /// Queries the database to find the Room matching the ID input
         /// </summary>
         /// <param name="id">The ID of the room</param>
         /// <returns>The Room from the database</returns>
-        public async Task<Room> GetRoom(int id)
+        public async Task<RoomDTO> GetRoom(int id)
         {
             Room room = await _context.Rooms
                 .Where(x => x.Id == id)
@@ -71,14 +87,29 @@ namespace Lab12_2.Models.Interfaces.Services
                 .ToListAsync();
             room.RoomAmenities = roomAmenities;
 
-            return room;
+            List<AmenityDTO> amenityDTO = new List<AmenityDTO>();
+
+            foreach(var amenity in roomAmenities)
+            {
+                amenityDTO.Add(await _Amenity.GetAmenity(id));
+            }
+
+            RoomDTO roomDTO = new RoomDTO()
+            {
+                ID = room.Id,
+                Name = room.Name,
+                Layout = room.Layout,
+                Amenities = amenityDTO
+            };
+
+            return roomDTO;
         }
         /// <summary>
         /// Updates the Room in the database
         /// </summary>
         /// <param name="room">The object of the Room to be updated</param>
         /// <returns>The updated Room</returns>
-        public async Task<Room> Update(Room room)
+        public async Task<RoomDTO> Update(RoomDTO room)
         {
             _context.Entry(room).State = EntityState.Modified;
             await _context.SaveChangesAsync();
