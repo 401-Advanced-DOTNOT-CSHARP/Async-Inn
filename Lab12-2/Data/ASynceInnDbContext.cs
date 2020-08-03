@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Lab12_2.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Lab12_2.Data
 {
-    public class ASynceInnDbContext : DbContext
+    public class ASynceInnDbContext : IdentityDbContext<ApplicationUser>
     {
         public ASynceInnDbContext(DbContextOptions<ASynceInnDbContext> options) : base(options)
         {
@@ -17,6 +18,8 @@ namespace Lab12_2.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<RoomAmenities>().HasKey(x => new { x.AmenitiesID, x.RoomID });
             modelBuilder.Entity<HotelRoom>().HasKey(x => new { x.HotelID, x.RoomNumber });
 

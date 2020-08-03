@@ -15,6 +15,7 @@ using Lab12_2.Models.Interfaces;
 using System.Collections;
 using Lab12_2.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lab12_2
 {
@@ -37,6 +38,10 @@ namespace Lab12_2
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ASynceInnDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddTransient<IHotel, HotelRepository>();
             services.AddTransient<IRoom, RoomRepository>();
