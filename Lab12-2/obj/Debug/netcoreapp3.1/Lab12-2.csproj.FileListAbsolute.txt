@@ -196,8 +196,6 @@ C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\bin\Debug\netcoreapp3.1\runtimes\w
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.csprojAssemblyReference.cache
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.AssemblyInfoInputs.cache
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.AssemblyInfo.cs
-C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.csproj.CoreCompileInputs.cache
-C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.RazorTargetAssemblyInfo.cache
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.csproj.CopyComplete
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\staticwebassets\Lab12-2.StaticWebAssets.Manifest.cache
@@ -205,3 +203,10 @@ C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\staticweba
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.dll
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.pdb
 C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.genruntimeconfig.cache
+C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.csproj.CoreCompileInputs.cache
+C:\Users\Bryan\source\repos\Async-Inn\Lab12-2\obj\Debug\netcoreapp3.1\Lab12-2.MvcApplicationPartsAssemblyInfo.cache

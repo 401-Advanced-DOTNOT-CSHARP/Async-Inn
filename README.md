@@ -230,11 +230,27 @@ Create DTOs that will be accepted and returned to the user:
         public string Name { get; set; }
     }
 
+## Lab 17 - DTOs and Routing
+
+Building off of your Async Inn API, integrate identity by completing the following:
+
+Create an Applicaiton User ApplicationUser:IdentityUser
+Update your DbContext to derive from `IdentityDbContext
+Update your database to integrate in the Identity database tables
+Register Identity into your Startup file services.AddIdentity....
+Create an Account Controller and add both Register and Login actions
+Confirm that you can register a user successfully in the database
+Confirm that you can login with the credentials of an existing user
+
 # Visual
 
 ![Diagram](/Diagram.jpg)
 
 Versions:
+2.1: *Added the ability to create a user and Login with a created user. Did this by installing Identity on the data file
+        and inheriting from the Identity instead of DBContext. This created 7 more tables inside the database. Then I added
+        a register and login DTO files to use as a basis for creating the user and loggin in the user in the 2 different POST routes
+        I then created a controller with 2 POST routes 1 for registering a user and 1 for logging a user in.* - August 2 2020
 2.0: *Created DTO class, modified the Interfaces to take in and output DTO classes, modified the services 
         to convert DTO objects to their normal object counterparts and then return the DTO object while passing
         the normal object to the database. Modified the controllers to intake DTO objects with the correct routing* August 1 2020
